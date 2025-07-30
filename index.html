@@ -94,6 +94,13 @@
       navigator.clipboard.writeText('0x00000000000000000');
       alert('CA copied to clipboard!');
     }
+    function loadPFPGenerator() {
+      const script = document.createElement('script');
+      script.src = 'https://raw.githubusercontent.com/nothing010101/something/refs/heads/main/pfp.js';
+      script.onload = () => console.log('PFP Generator loaded');
+      script.onerror = () => alert('Failed to load PFP generator.');
+      document.body.appendChild(script);
+    }
     window.onload = () => {
       updateVisitorCount();
       setInterval(updateVisitorCount, 5000);
@@ -122,7 +129,7 @@
     <button class="buy-button">Buy $NEET on Ape.store</button>
   </a>
   <button class="buy-button">Read Manifesto</button>
-  <button class="buy-button">Quit Your Job</button>
+  <button class="buy-button" onclick="loadPFPGenerator()">Quit Your Job</button>
 </div>
 
   </main>  <div class="divider"></div>  <section class="about">
