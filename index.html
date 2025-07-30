@@ -1,202 +1,160 @@
 <!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$NEET - The Post-Work Meme Coin</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0e0e0e;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        header {
-            text-align: center;
-            padding: 2rem 1rem 1rem;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.3rem;
-            color: #00ff99;
-        }
-        p.subtitle {
-            color: #ccc;
-            font-size: 1.2rem;
-        }
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 2rem;
-        }
-        .grid-descriptions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .desc {
-            background-color: #1e1e1e;
-            padding: 1.5rem;
-            border-radius: 10px;
-        }
-        .desc h3 {
-            margin-top: 0;
-            color: #00ff99;
-        }
-        nav {
-            text-align: center;
-            margin-top: 2rem;
-        }
-        nav a {
-            margin: 0 1rem;
-            color: #00ffcc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .marquee {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: border-box;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            margin-top: 2rem;
-            padding: 1rem 0;
-            background: #1a1a1a;
-        }
-        .marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
-        .copyable {
-            cursor: pointer;
-            text-decoration: underline;
-        }
-        #quitModal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            align-items: center;
-            justify-content: center;
-        }
-        #quitModal .modal-content {
-            background-color: #1e1e1e;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-        }
-        textarea {
-            width: 100%;
-            height: 300px;
-            margin-top: 1rem;
-            background-color: #111;
-            color: #0f0;
-            border: none;
-            padding: 1rem;
-            font-family: monospace;
-            resize: none;
-        }
-        .generate-btn, .copy-btn {
-            background-color: #00ff99;
-            color: black;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEET Resignation Generator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0e0e0e;
+      color: white;
+    }
+    header {
+      background: #1a1a1a;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      padding: 2rem;
+      display: grid;
+      gap: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .section {
+      background: #1e1e1e;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .section h2 {
+      margin-top: 0;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #00ff99;
+      color: #000;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: center;
+    }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal {
+      background: #222;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-top: 1rem;
+      background: #111;
+      color: white;
+      border: 1px solid #444;
+      padding: 0.5rem;
+      resize: vertical;
+    }
+    .copy-btn {
+      margin-top: 0.5rem;
+      background: #00ccff;
+      color: #000;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>$NEET</h1>
-        <p class="subtitle">The post-work meme coin for a post-work future.</p>
-        <nav>
-            <a href="#" onclick="openQuitModal()">Quit Your Job</a>
-            <a href="https://ape.store/base" target="_blank">Buy</a>
-            <a href="https://twitter.com/neetonbase" target="_blank">Twitter</a>
-            <a href="https://t.me/neetonbase" target="_blank">Telegram</a>
-            <a href="https://neet.store" target="_blank">Merch</a>
-        </nav>
-    </header><div class="container">
-    <div class="grid-descriptions">
-        <div class="desc">
-            <h3>🤖 $neet is UBI</h3>
-            <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
-        </div>
-        <div class="desc">
-            <h3>😎 $neet gives you your life back</h3>
-            <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs live at a more natural pace, free from the cortisol flood of toxic work culture.</p>
-        </div>
-        <div class="desc">
-            <h3>🪁 $neet is freedom</h3>
-            <p>Over 40% of American workers live paycheck to paycheck (LendingClub 2023 report). NEETs escape the debt trap and reclaim their time, proving work isn't the only path to dignity.</p>
-        </div>
+  <header>
+    <h1>$NEET - Freedom Starts Here</h1>
+  </header>  <div class="container">
+    <div class="section">
+      <h2>🤖 $neet is UBI</h2>
+      <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
     </div>
-</div>
-
-<div class="marquee">
-    <span onclick="copyCA()">CA: <span id="ca" class="copyable">0x00000000000000000</span></span>
-</div>
-
-<div class="container" id="visitorCount">👁️ Visitors online: <span id="visitors">1</span></div>
-
-<div id="quitModal">
-    <div class="modal-content">
-        <h2>Quit Your Job</h2>
-        <input type="text" id="fullName" placeholder="Your full name" style="width:100%; padding:0.5rem;">
-        <input type="text" id="position" placeholder="Your position" style="width:100%; padding:0.5rem; margin-top:1rem;">
-        <input type="text" id="company" placeholder="Company name" style="width:100%; padding:0.5rem; margin-top:1rem;">
-        <input type="text" id="boss" placeholder="Your boss's name" style="width:100%; padding:0.5rem; margin-top:1rem;">
-        <button class="generate-btn" onclick="generateResignation()">Generate Letter</button>
-        <textarea id="resignOutput" readonly></textarea>
-        <button class="copy-btn" onclick="copyResignText()">Copy Letter</button>
+    <div class="section">
+      <h2>😎 $neet gives you your life back</h2>
+      <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs are more likely to live at a natural, less cortisol-flooded pace, which has serious long-term health benefits.</p>
     </div>
+    <div class="section">
+      <h2>🪁 $neet is freedom</h2>
+      <p>Over 40% of American workers live paycheck to paycheck. Being employed doesn't even guarantee stability. NEETs often avoid the debt traps and living-cost traps that enslave workers.</p>
+    </div><div class="section" style="text-align: center;">
+  <button class="cta-button" id="openModal">Quit Your Job</button>
 </div>
 
-<script>
-    function openQuitModal() {
-        document.getElementById('quitModal').style.display = 'flex';
+<div class="section" id="letterSection" style="display:none">
+  <h2>Your Resignation Letter</h2>
+  <textarea id="resignationLetter" readonly></textarea>
+  <button class="cta-button copy-btn" onclick="copyLetter()">Copy Letter</button>
+</div>
+
+  </div>  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h2>Generate Your Resignation Letter</h2>
+      <input type="text" id="fullname" placeholder="Full Name" style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+      <input type="text" id="position" placeholder="Your Position" style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+      <input type="text" id="company" placeholder="Company Name" style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+      <input type="text" id="boss" placeholder="Your Boss's Name" style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+      <button class="cta-button" onclick="generateLetter()">Generate</button>
+    </div>
+  </div>  <script>
+    function openModal() {
+      document.getElementById('modalOverlay').style.display = 'flex';
     }
-    function generateResignation() {
-        const name = document.getElementById('fullName').value;
-        const position = document.getElementById('position').value;
-        const company = document.getElementById('company').value;
-        const boss = document.getElementById('boss').value;
-        
-        const letter = `Dear ${boss},\n\nI hope this message finds you well. I am writing to formally resign from my position as ${position} at ${company}, effective immediately.\n\nAfter considerable thought and reflection, I have decided to pursue a lifestyle more aligned with my values, health, and long-term vision. The modern work culture has led to unsustainable stress levels and a lack of fulfillment, and I believe it is time for me to reclaim my time and focus on meaningful personal pursuits.\n\nThis decision does not come lightly, and I deeply appreciate the experiences and growth I have gained during my time here. However, I can no longer ignore the toll it has taken on my well-being and creativity.\n\nThank you for the opportunities and lessons. I wish ${company} continued success.\n\nSincerely,\n${name}`;
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+    document.getElementById('openModal').addEventListener('click', openModal);
 
-        document.getElementById('resignOutput').value = letter;
+    function generateLetter() {
+      const name = document.getElementById('fullname').value;
+      const position = document.getElementById('position').value;
+      const company = document.getElementById('company').value;
+      const boss = document.getElementById('boss').value;
+
+      const letter = `Dear ${boss},\n\nI am writing to formally resign from my position as ${position} at ${company}, effective immediately.\n\nAfter much reflection, I have come to realize that the traditional workforce no longer aligns with my values or aspirations. The pursuit of stability through employment has become a cycle of burnout and disillusionment.\n\nI choose to reclaim my time, prioritize my well-being, and embrace a lifestyle that fosters creativity, autonomy, and mental clarity.\n\nThis decision is not made out of recklessness, but from a place of deep clarity. I appreciate the opportunities I've had at ${company}, and I wish the team continued success.\n\nSincerely,\n${name}`;
+
+      document.getElementById('resignationLetter').value = letter;
+      document.getElementById('letterSection').style.display = 'block';
+      closeModal();
     }
 
-    function copyResignText() {
-        const output = document.getElementById('resignOutput');
-        output.select();
-        document.execCommand('copy');
-        alert("Resignation letter copied to clipboard!");
+    function copyLetter() {
+      const textArea = document.getElementById('resignationLetter');
+      textArea.select();
+      document.execCommand('copy');
+      alert('Letter copied to clipboard!');
     }
-
-    function copyCA() {
-        const ca = document.getElementById("ca").innerText;
-        navigator.clipboard.writeText(ca).then(() => alert("CA copied!"));
-    }
-
-    setInterval(() => {
-        const count = Math.floor(Math.random() * 90 + 10);
-        document.getElementById("visitors").innerText = count;
-    }, 5000);
-</script>
-
-</body>
+  </script></body>
 </html>
