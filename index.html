@@ -1,132 +1,134 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$NEET - The Basement Token</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>$NEET – Not in Employment, Education, or Training</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #0d0d0d;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #0f0f0f; color: #e4e4e4;
+      text-align: center;
     }
     .marquee {
-      width: 100%;
-      background: #111;
-      padding: 10px 0;
-      white-space: nowrap;
-      overflow: hidden;
-      box-sizing: border-box;
+      background: #111; color: #0f0;
+      padding: 8px 0; overflow: hidden; white-space: nowrap;
+      font-size: 0.9rem;
+      cursor: pointer;
     }
     .marquee span {
       display: inline-block;
       padding-left: 100%;
-      animation: marquee 15s linear infinite;
+      animation: scroll-left 15s linear infinite;
     }
-    @keyframes marquee {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-100%, 0); }
-    }
-    .copyable {
-      cursor: pointer;
-      border: 1px solid #444;
-      padding: 6px 12px;
-      border-radius: 5px;
-      background: #1a1a1a;
-    }
-    .copyable:hover {
-      background: #222;
-    }
-    .header, .description, .buttons {
-      text-align: center;
-      margin: 20px auto;
-      max-width: 800px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      font-size: 1rem;
-      color: #aaa;
-      margin-bottom: 30px;
-    }
-    .buttons button {
-      margin: 10px;
-      padding: 12px 24px;
-      font-size: 1rem;
-      background: #08f;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .buttons button:hover {
-      background: #06c;
-    }
-    .description-box {
-      background: #1a1a1a;
-      padding: 30px;
-      border-radius: 12px;
-      margin-top: 40px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    }
-    .desc-section {
-      margin-bottom: 30px;
-    }
-    .desc-section h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    .desc-section p {
-      font-size: 1rem;
-      color: #ccc;
-      line-height: 1.6;
+    @keyframes scroll-left {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
     }
     .social {
-      margin-top: 10px;
+      margin-top: 16px;
       font-size: 0.9rem;
-      color: #888;
+    }
+    .social a {
+      color: #08f; margin: 0 8px;
+      text-decoration: none;
+    }
+    header h1 {
+      font-size: 3rem; margin: 24px 0 8px;
+      color: #00ffaa;
+    }
+    header .subtitle {
+      font-size: 1rem; color: #aaa;
+      padding: 0 16px;
+      line-height: 1.4;
+    }
+    .buttons {
+      margin: 24px 0;
+    }
+    .buttons button {
+      margin: 0 12px; padding: 12px 24px;
+      font-size: 1rem;
+      background: #00aaff; color: #000;
+      border: none; border-radius: 6px;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .buttons button:hover {
+      background: #0088cc;
+    }
+    .description-box {
+      margin: 40px auto;
+      background: #1a1a1a;
+      max-width: 800px; padding: 28px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      text-align: left;
+    }
+    .desc-section {
+      margin-bottom: 24px;
+    }
+    .desc-section:last-child { margin-bottom: 0; }
+    .desc-section h3 {
+      font-size: 1.4rem;
+      color: #00ffaa;
+      margin-bottom: 8px;
+    }
+    .desc-section p {
+      font-size: 1rem; color: #ccc;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <div class="marquee" onclick="copyCA()">
     <span id="ca-text">CA: 0x00000000000000000</span>
-  </div>  <div class="social">
-    Twitter | Telegram | Merch
-  </div>  <div class="header">
-    <h1>NEET</h1>
-    <div class="subtitle">Not in Employment, Education, or Training<br>The premier token for basement dwellers worldwide.</div>
-  </div>  <div class="buttons">
-    <button onclick="window.open('https://ape.store/base', '_blank')">Buy on Ape</button>
+  </div>
+
+  <div class="social">
+    <a href="https://twitter.com/neet_sol" target="_blank">Twitter</a> ·
+    <a href="https://t.me/neetonbase" target="_blank">Telegram</a> ·
+    <a href="https://neetcoin.xyz/shop" target="_blank">Merch</a>
+  </div>
+
+  <header>
+    <h1>$NEET</h1>
+    <div class="subtitle">
+      Not in Employment, Education, or Training<br>
+      The premier token for basement dwellers worldwide.
+    </div>
+  </header>
+
+  <div class="buttons">
+    <button onclick="window.open('https://ape.store/base','_blank')">
+      Buy on Ape.store
+    </button>
     <button onclick="openGenerator()">Quit Your Job</button>
-  </div>  <div class="description-box">
+  </div>
+
+  <div class="description-box">
     <div class="desc-section">
       <h3>🤖 $neet is UBI</h3>
-      <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
+      <p>Automation and AI are taking jobs. The future is post‑work. NEETs are early adopters of the inevitable shift toward universal basic income (UBI) — a world where survival doesn't depend on meaningless jobs.</p>
     </div>
     <div class="desc-section">
       <h3>😎 $neet gives you your life back</h3>
-      <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs are more likely to live at a natural, less cortisol-flooded pace, which has serious long-term health benefits.</p>
+      <p>Chronic stress from jobs contributes to heart disease, diabetes, and auto‑immune disorders. NEETs often reclaim natural pacing, health, and long‑term vitality.</p>
     </div>
     <div class="desc-section">
       <h3>🪁 $neet is freedom</h3>
-      <p>Over 40% of American workers live paycheck to paycheck (LendingClub 2023 report). Being employed doesn't even guarantee stability. In fact, some NEETs avoid the debt traps and living-cost traps that enslave workers.</p>
+      <p>Over 40% of American workers live paycheck‑to‑paycheck. Employment doesn't guarantee stability. NEETs dodge wage debt traps and rediscover dignity outside the wage cage.</p>
     </div>
-  </div>  <script>
+  </div>
+
+  <script>
     function copyCA() {
-      const text = document.getElementById("ca-text").innerText.replace("CA: ", "");
-      navigator.clipboard.writeText(text);
-      alert("Contract Address copied to clipboard!");
+      const txt = document.getElementById('ca-text').innerText.replace('CA: ','');
+      navigator.clipboard.writeText(txt).then(() => alert('Contract address copied!'));
     }
     function openGenerator() {
-      alert("(Popup generator will open here in full setup)");
+      alert('Popup Generator akan muncul di sini nanti');
     }
-  </script></body>
+  </script>
+</body>
 </html>
