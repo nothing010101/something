@@ -1,134 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>$NEET – Not in Employment, Education, or Training</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0f0f0f; color: #e4e4e4;
-      text-align: center;
-    }
-    .marquee {
-      background: #111; color: #0f0;
-      padding: 8px 0; overflow: hidden; white-space: nowrap;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-    .marquee span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll-left 15s linear infinite;
-    }
-    @keyframes scroll-left {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
-    }
-    .social {
-      margin-top: 16px;
-      font-size: 0.9rem;
-    }
-    .social a {
-      color: #08f; margin: 0 8px;
-      text-decoration: none;
-    }
-    header h1 {
-      font-size: 3rem; margin: 24px 0 8px;
-      color: #00ffaa;
-    }
-    header .subtitle {
-      font-size: 1rem; color: #aaa;
-      padding: 0 16px;
-      line-height: 1.4;
-    }
-    .buttons {
-      margin: 24px 0;
-    }
-    .buttons button {
-      margin: 0 12px; padding: 12px 24px;
-      font-size: 1rem;
-      background: #00aaff; color: #000;
-      border: none; border-radius: 6px;
-      cursor: pointer;
-      transition: background .3s;
-    }
-    .buttons button:hover {
-      background: #0088cc;
-    }
-    .description-box {
-      margin: 40px auto;
-      background: #1a1a1a;
-      max-width: 800px; padding: 28px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      text-align: left;
-    }
-    .desc-section {
-      margin-bottom: 24px;
-    }
-    .desc-section:last-child { margin-bottom: 0; }
-    .desc-section h3 {
-      font-size: 1.4rem;
-      color: #00ffaa;
-      margin-bottom: 8px;
-    }
-    .desc-section p {
-      font-size: 1rem; color: #ccc;
-      line-height: 1.6;
-    }
-  </style>
-</head>
-<body>
-  <div class="marquee" onclick="copyCA()">
-    <span id="ca-text">CA: 0x00000000000000000</span>
-  </div>
-
-  <div class="social">
-    <a href="https://twitter.com/neet_sol" target="_blank">Twitter</a> ·
-    <a href="https://t.me/neetonbase" target="_blank">Telegram</a> ·
-    <a href="https://neetcoin.xyz/shop" target="_blank">Merch</a>
-  </div>
-
-  <header>
-    <h1>$NEET</h1>
-    <div class="subtitle">
-      Not in Employment, Education, or Training<br>
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEET Token</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: #0c0c0c;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+      }
+      .ca-container {
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .ca-copy {
+        background: #1e1e1e;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        display: inline-block;
+        cursor: pointer;
+      }
+      .ca-copy:hover {
+        background: #333;
+      }
+      .social-link {
+        margin-bottom: 1.5rem;
+      }
+      h1 {
+        font-size: 3rem;
+        margin: 0.5rem 0;
+      }
+      .subheading {
+        font-size: 1rem;
+        color: #aaa;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      .btn-container {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .btn {
+        background: #1a1a1a;
+        border: 1px solid #444;
+        padding: 0.75rem 1.5rem;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #333;
+      }
+      .description {
+        max-width: 700px;
+        background: #1e1e1e;
+        padding: 2rem;
+        border-radius: 12px;
+        line-height: 1.6;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background: #121212;
+        padding: 2rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+      }
+      .modal-content textarea {
+        width: 100%;
+        height: 200px;
+        background: #1e1e1e;
+        color: #fff;
+        border: none;
+        padding: 1rem;
+        border-radius: 6px;
+        resize: none;
+      }
+      .modal-content input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0.75rem;
+        background: #1e1e1e;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+      }
+      .modal-content button {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ca-container">
+      <div class="ca-copy" onclick="copyCA()">CA: 0x00000000000000000 (Click to Copy)</div>
+    </div>
+    <div class="social-link">
+      <a href="#" style="color:#0ff;">Twitter | Discord | Merch</a>
+    </div>
+    <h1>NEET</h1>
+    <div class="subheading">
+      Not in Employment, Education, or Training<br/>
       The premier token for basement dwellers worldwide.
     </div>
-  </header>
-
-  <div class="buttons">
-    <button onclick="window.open('https://ape.store/base','_blank')">
-      Buy on Ape.store
-    </button>
-    <button onclick="openGenerator()">Quit Your Job</button>
-  </div>
-
-  <div class="description-box">
-    <div class="desc-section">
+    <div class="btn-container">
+      <a class="btn" href="https://ape.store/base" target="_blank">Buy on Ape</a>
+      <button class="btn" onclick="showModal()">Quit Your Job</button>
+    </div>
+    <div class="description">
       <h3>🤖 $neet is UBI</h3>
-      <p>Automation and AI are taking jobs. The future is post‑work. NEETs are early adopters of the inevitable shift toward universal basic income (UBI) — a world where survival doesn't depend on meaningless jobs.</p>
-    </div>
-    <div class="desc-section">
+      <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
       <h3>😎 $neet gives you your life back</h3>
-      <p>Chronic stress from jobs contributes to heart disease, diabetes, and auto‑immune disorders. NEETs often reclaim natural pacing, health, and long‑term vitality.</p>
-    </div>
-    <div class="desc-section">
+      <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs are more likely to live at a natural, less cortisol-flooded pace, which has serious long-term health benefits.</p>
       <h3>🪁 $neet is freedom</h3>
-      <p>Over 40% of American workers live paycheck‑to‑paycheck. Employment doesn't guarantee stability. NEETs dodge wage debt traps and rediscover dignity outside the wage cage.</p>
-    </div>
+      <p>Over 40% of American workers live paycheck to paycheck (LendingClub 2023 report). Being employed doesn't even guarantee stability. In fact, some NEETs avoid the debt traps and living-cost traps that enslave workers.</p>
+    </div><div class="modal" id="resignModal">
+  <div class="modal-content">
+    <h3>Generate Your Resignation Letter</h3>
+    <input type="text" id="fullname" placeholder="Your Full Name" />
+    <input type="text" id="position" placeholder="Your Position" />
+    <input type="text" id="company" placeholder="Company Name" />
+    <input type="text" id="boss" placeholder="Your Boss's Name" />
+    <button class="btn" onclick="generateLetter()">Generate</button>
+    <textarea id="result" readonly></textarea>
+    <button class="btn" onclick="copyResult()">Copy</button>
+    <button class="btn" onclick="hideModal()">Close</button>
   </div>
+</div>
 
-  <script>
-    function copyCA() {
-      const txt = document.getElementById('ca-text').innerText.replace('CA: ','');
-      navigator.clipboard.writeText(txt).then(() => alert('Contract address copied!'));
-    }
-    function openGenerator() {
-      alert('Popup Generator akan muncul di sini nanti');
-    }
-  </script>
-</body>
+<script>
+  function copyCA() {
+    navigator.clipboard.writeText("0x00000000000000000");
+    alert("CA copied to clipboard!");
+  }
+
+  function showModal() {
+    document.getElementById("resignModal").style.display = "flex";
+  }
+
+  function hideModal() {
+    document.getElementById("resignModal").style.display = "none";
+  }
+
+  function generateLetter() {
+    const name = document.getElementById("fullname").value;
+    const position = document.getElementById("position").value;
+    const company = document.getElementById("company").value;
+    const boss = document.getElementById("boss").value;
+
+    const letter = `Dear ${boss},\n\nI am writing to formally resign from my position as ${position} at ${company}.\n\nThis decision comes after careful consideration and a desire to explore new paths aligned with my personal values and long-term goals. I appreciate the opportunities and experiences I've gained during my time here.\n\nMy last working day will be two weeks from today. I am committed to ensuring a smooth transition and will assist in handing off responsibilities.\n\nThank you once again for the support and guidance during my tenure.\n\nSincerely,\n${name}`;
+
+    document.getElementById("result").value = letter;
+  }
+
+  function copyResult() {
+    const result = document.getElementById("result");
+    result.select();
+    document.execCommand("copy");
+    alert("Resignation letter copied to clipboard!");
+  }
+</script>
+
+  </body>
 </html>
