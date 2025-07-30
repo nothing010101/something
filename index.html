@@ -1,176 +1,168 @@
 <!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>$NEET</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #0e0e0e;
-        color: #fff;
-        text-align: center;
-      }
-      header {
-        background: #1a1a1a;
-        padding: 20px;
-        font-size: 24px;
-      }
-      nav a {
-        color: #fff;
-        margin: 0 15px;
-        text-decoration: none;
-      }
-      .hero {
-        padding: 40px 20px;
-      }
-      .ticker {
-        white-space: nowrap;
-        overflow: hidden;
-        box-sizing: border-box;
-        background: #222;
-        padding: 10px 0;
-        font-weight: bold;
-      }
-      .ticker span {
-        display: inline-block;
-        padding-left: 100%;
-        animation: ticker 15s linear infinite;
-      }
-      @keyframes ticker {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-100%); }
-      }
-      .about {
-        max-width: 600px;
-        margin: auto;
-        padding: 20px;
-        text-align: left;
-      }
-      .about h3 {
-        margin-top: 30px;
-      }
-      .form-popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #1f1f1f;
-        padding: 20px;
-        border: 2px solid #444;
-        z-index: 9999;
-        width: 90%;
-        max-width: 400px;
-      }
-      .form-popup input, .form-popup button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        font-size: 16px;
-      }
-      .form-popup button {
-        background: #00ff99;
-        border: none;
-        cursor: pointer;
-      }
-      .footer {
-        padding: 30px;
-        background: #111;
-        font-size: 14px;
-      }
-      .copy-alert {
-        color: #0f0;
-        font-size: 12px;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      $NEET
-      <nav>
-        <a href="https://ape.store/base" target="_blank">Buy</a>
-        <a href="#" onclick="openForm()">Quit Your Job</a>
-        <a href="https://twitter.com/neetonbase" target="_blank">Twitter</a>
-        <a href="https://t.me/neetonbase" target="_blank">Telegram</a>
-        <a href="https://based.merch" target="_blank">Merch</a>
-      </nav>
-    </header><div class="ticker" onclick="copyCA()">
-  <span>CA: 0x00000000000000000 — Click to copy</span>
-</div>
-<div class="copy-alert" id="copy-alert" style="display:none">Copied!</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$NEET</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #e4e4e4;
+      line-height: 1.6;
+    }
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #00ff99;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: #00ff99;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .description {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      background: #131313;
+    }
+    .desc-card {
+      background: #1a1a1a;
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .desc-card h3 {
+      color: #00ff99;
+      margin-bottom: 10px;
+    }
+    .marquee {
+      background: #111;
+      color: #0f0;
+      padding: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 15s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    .copy {
+      cursor: pointer;
+      color: #0f0;
+    }
+    .copy:hover {
+      text-decoration: underline;
+    }
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a1a1a;
+      padding: 30px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      z-index: 999;
+    }
+    .form-popup input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border: none;
+      background: #111;
+      color: #eee;
+    }
+    .form-popup button {
+      padding: 10px 20px;
+      background: #00ff99;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+    #resign-output {
+      margin-top: 20px;
+      background: #111;
+      padding: 20px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>$NEET</h1>
+    <nav>
+      <a href="https://twitter.com">Twitter</a>
+      <a href="https://t.me">Telegram</a>
+      <a href="https://ape.store/base">Buy</a>
+      <a href="#">Merch</a>
+      <a href="#" onclick="openForm()">Quit Your Job</a>
+    </nav>
+  </header>  <div class="marquee">
+    <span onclick="copyCA()" class="copy">CA: 0x00000000000000000 — Click to copy</span>
+  </div>  <section class="description">
+    <div class="desc-card">
+      <h3>🤖 $NEET is UBI</h3>
+      <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
+    </div>
+    <div class="desc-card">
+      <h3>😎 $NEET gives you your life back</h3>
+      <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs are more likely to live at a natural, less cortisol-flooded pace, which has serious long-term health benefits.</p>
+    </div>
+    <div class="desc-card">
+      <h3>🪁 $NEET is freedom</h3>
+      <p>Over 40% of American workers live paycheck to paycheck. Being employed doesn't even guarantee stability. In fact, some NEETs avoid the debt traps and living-cost traps that enslave workers.</p>
+    </div>
+  </section>  <div class="form-popup" id="quitForm">
+    <h2>Generate Resignation Letter</h2>
+    <input type="text" id="fullname" placeholder="Full Name">
+    <input type="text" id="position" placeholder="Your Position">
+    <input type="text" id="company" placeholder="Company Name">
+    <input type="text" id="boss" placeholder="Manager's Name">
+    <button onclick="generateResign()">Generate</button>
+    <div id="resign-output"></div>
+  </div>  <script>
+    function openForm() {
+      document.getElementById('quitForm').style.display = 'block';
+    }
 
-<section class="hero">
-  <h1>Welcome to $NEET</h1>
-  <p>Not in Employment, Education, or Training — and proud.</p>
-  <button onclick="openForm()">📝 Generate Resignation Letter</button>
-  <p id="visitor-count">Visitors: ...</p>
-</section>
+    function copyCA() {
+      navigator.clipboard.writeText('0x00000000000000000');
+      alert('Contract address copied!');
+    }
 
-<section class="about">
-  <h3>🤖 $neet is UBI</h3>
-  <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
-  <h3>😎 $neet gives you your life back</h3>
-  <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs are more likely to live at a natural, less cortisol-flooded pace, which has serious long-term health benefits.</p>
-  <h3>🪁 $neet is freedom</h3>
-  <p>Over 40% of American workers live paycheck to paycheck (LendingClub 2023 report). Being employed doesn't even guarantee stability. In fact, some NEETs avoid the debt traps and living-cost traps that enslave workers.</p>
-</section>
+    function generateResign() {
+      const name = document.getElementById('fullname').value;
+      const pos = document.getElementById('position').value;
+      const company = document.getElementById('company').value;
+      const boss = document.getElementById('boss').value;
 
-<div class="form-popup" id="pfpForm">
-  <h3>📝 Generate Resignation Letter</h3>
-  <input type="text" id="name" placeholder="Your Name" />
-  <input type="text" id="position" placeholder="Your Job Title" />
-  <input type="text" id="company" placeholder="Company Name" />
-  <input type="text" id="boss" placeholder="Your Boss Name" />
-  <button onclick="generateLetter()">Generate</button>
-  <button onclick="closeForm()">Close</button>
-  <div id="letterPreview" style="text-align:left; padding-top:10px;"></div>
-</div>
+      const letter = `Dear ${boss},\n\nI hereby formally resign from my position as ${pos} at ${company}, effective immediately.\n\nThis decision comes after careful reflection on my life goals and the realization that the current work culture no longer aligns with my personal well-being or future direction.\n\nI am choosing to pursue freedom, health, and creativity outside of traditional employment structures.\n\nThank you for the experience.\n\nSincerely,\n${name}`;
 
-<div class="footer">
-  © 2025 $NEET. Built by NEETs, for NEETs.
-</div>
-
-<script>
-  function openForm() {
-    document.getElementById("pfpForm").style.display = "block";
-  }
-  function closeForm() {
-    document.getElementById("pfpForm").style.display = "none";
-  }
-  function copyCA() {
-    navigator.clipboard.writeText("0x00000000000000000").then(() => {
-      const alert = document.getElementById("copy-alert");
-      alert.style.display = "block";
-      setTimeout(() => (alert.style.display = "none"), 1500);
-    });
-  }
-  function generateLetter() {
-    const name = document.getElementById("name").value;
-    const position = document.getElementById("position").value;
-    const company = document.getElementById("company").value;
-    const boss = document.getElementById("boss").value;
-
-    const letter = `
-      Dear ${boss || "Sir/Madam"},<br><br>
-      I hereby resign from my position as ${position || "a burned-out employee"} at ${company || "your soul-crushing company"}.<br><br>
-      It's not me, it's capitalism. Automation, AI, and NEET culture have opened my eyes.<br><br>
-      Best regards,<br>
-      ${name || "a proud NEET"}
-    `;
-
-    document.getElementById("letterPreview").innerHTML = letter;
-  }
-
-  // Visitor count mock
-  function updateVisitor() {
-    const n = Math.floor(Math.random() * 9000 + 1000);
-    document.getElementById("visitor-count").textContent = `Visitors: ${n}`;
-  }
-  setInterval(updateVisitor, 5000);
-  updateVisitor();
-</script>
-
-  </body>
+      document.getElementById('resign-output').innerText = letter;
+    }
+  </script></body>
 </html>
