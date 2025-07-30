@@ -61,6 +61,7 @@
       background: #222;
       overflow: hidden;
       white-space: nowrap;
+      cursor: pointer;
     }
     .ticker-text {
       display: inline-block;
@@ -75,11 +76,23 @@
         transform: translateX(-100%);
       }
     }
+    .about {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
   </style>
   <script>
     function updateVisitorCount() {
       const count = Math.floor(Math.random() * 100000) + 10000;
       document.getElementById('visitor-count').textContent = count.toLocaleString();
+    }
+    function copyCA() {
+      navigator.clipboard.writeText('0x00000000000000000');
+      alert('CA copied to clipboard!');
     }
     window.onload = () => {
       updateVisitorCount();
@@ -88,8 +101,8 @@
   </script>
 </head>
 <body>
-  <div class="ticker">
-    <div class="ticker-text">CA: 0x00000000000000000000000</div>
+  <div class="ticker" onclick="copyCA()">
+    <div class="ticker-text">CA: 0x00000000000000000 - CLICK TO COPY</div>
   </div>
   <nav class="navbar">
     <div>
@@ -112,7 +125,11 @@
   <button class="buy-button">Quit Your Job</button>
 </div>
 
-  </main>  <div class="divider"></div>  <footer>
+  </main>  <div class="divider"></div>  <section class="about">
+    <h2>About $NEET</h2>
+    <p>$NEET isn’t just a coin. It’s a movement for those who’ve opted out of the rat race. No jobs. No school. No stress. Just vibes, memes, and total freedom from society’s expectations.</p>
+    <p>Whether you’re gaming in your mom’s basement, building the next crypto empire from your bedroom, or just vibing to lofi beats, $NEET is your token of rebellion, apathy, and ironic enlightenment.</p>
+  </section>  <div class="divider"></div>  <footer>
     <p>© 2025 $NEET. No rights reserved.</p>
     <p><small>DISCLAIMER: None of the content on this website is financial advice. Every piece of information on this website is a work of satire unless it is specified otherwise. DYOR, don't be a retard.</small></p>
     <p>Visitor count: <span id="visitor-count" style="font-family:monospace">0</span></p>
