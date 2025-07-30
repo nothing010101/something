@@ -6,178 +6,170 @@
     <style>
       body {
         margin: 0;
-        font-family: 'Courier New', monospace;
-        background-color: #0d0d0d;
-        color: #00ffcc;
+        font-family: Arial, sans-serif;
+        background-color: #0e0e0e;
+        color: #fff;
         text-align: center;
       }
       header {
+        background: #1a1a1a;
         padding: 20px;
-        font-size: 2em;
-        background-color: #1a1a1a;
-        box-shadow: 0 0 10px #00ffcc;
+        font-size: 24px;
       }
       nav a {
+        color: #fff;
         margin: 0 15px;
-        color: #00ffcc;
         text-decoration: none;
-        font-weight: bold;
       }
-      section {
+      .hero {
         padding: 40px 20px;
       }
-      .btn {
-        margin: 10px;
-        padding: 12px 24px;
-        background-color: #00ffcc;
-        color: #000;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        border-radius: 8px;
-      }
-      footer {
-        padding: 20px;
-        font-size: 0.9em;
-        background-color: #1a1a1a;
-        color: #555;
-      }
-      #visitorCount {
-        font-size: 1.2em;
-        margin-top: 20px;
-      }
-      #caTicker {
-        width: 100%;
-        overflow: hidden;
+      .ticker {
         white-space: nowrap;
+        overflow: hidden;
         box-sizing: border-box;
-        background-color: #000;
+        background: #222;
         padding: 10px 0;
-        margin-bottom: 20px;
+        font-weight: bold;
       }
-      #caTicker span {
+      .ticker span {
         display: inline-block;
         padding-left: 100%;
         animation: ticker 15s linear infinite;
-        cursor: pointer;
       }
       @keyframes ticker {
         0% { transform: translateX(0); }
         100% { transform: translateX(-100%); }
       }
-      #resignForm {
-        margin-top: 40px;
-        background: #1a1a1a;
+      .about {
+        max-width: 600px;
+        margin: auto;
         padding: 20px;
-        border-radius: 10px;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
+        text-align: left;
       }
-      #resignPreview {
+      .about h3 {
         margin-top: 30px;
-        background: #fff;
-        color: #000;
+      }
+      .form-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #1f1f1f;
         padding: 20px;
-        border-radius: 10px;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-        white-space: pre-wrap;
+        border: 2px solid #444;
+        z-index: 9999;
+        width: 90%;
+        max-width: 400px;
       }
-      .neet-desc {
-        text-align: left;
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 0 20px;
+      .form-popup input, .form-popup button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
       }
-      .neet-desc h3 {
-        color: #fff;
-        font-size: 1.2em;
-        margin-top: 20px;
+      .form-popup button {
+        background: #00ff99;
+        border: none;
+        cursor: pointer;
       }
-      .neet-desc p {
-        font-size: 1em;
-        color: #ccc;
+      .footer {
+        padding: 30px;
+        background: #111;
+        font-size: 14px;
+      }
+      .copy-alert {
+        color: #0f0;
+        font-size: 12px;
       }
     </style>
   </head>
   <body>
-    <header>$NEET</header>
-    <nav>
-      <a href="https://ape.store/base" target="_blank">Buy on Ape.store</a>
-      <button class="btn" onclick="loadQuitGenerator()">Quit Your Job</button>
-    </nav><div id="caTicker">
-  <span onclick="copyCA()">CA: 0x00000000000000000</span>
+    <header>
+      $NEET
+      <nav>
+        <a href="https://ape.store/base" target="_blank">Buy</a>
+        <a href="#" onclick="openForm()">Quit Your Job</a>
+        <a href="https://twitter.com/neetonbase" target="_blank">Twitter</a>
+        <a href="https://t.me/neetonbase" target="_blank">Telegram</a>
+        <a href="https://based.merch" target="_blank">Merch</a>
+      </nav>
+    </header><div class="ticker" onclick="copyCA()">
+  <span>CA: 0x00000000000000000 — Click to copy</span>
 </div>
+<div class="copy-alert" id="copy-alert" style="display:none">Copied!</div>
 
-<section>
-  <h2>Welcome to $NEET</h2>
-  <p id="visitorCount">Visitors: 0</p>
-
-  <div class="neet-desc">
-    <p>🤖</p>
-    <h3>$NEET is UBI</h3>
-    <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
-
-    <p>😎</p>
-    <h3>$NEET gives you your life back</h3>
-    <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs are more likely to live at a natural, less cortisol-flooded pace, which has serious long-term health benefits.</p>
-
-    <p>🪁</p>
-    <h3>$NEET is freedom</h3>
-    <p>Over 40% of American workers live paycheck to paycheck (LendingClub 2023 report). Being employed doesn't even guarantee stability. In fact, some NEETs avoid the debt traps and living-cost traps that enslave workers.</p>
-  </div>
-
-  <div>
-    <h3>About $NEET</h3>
-    <p>$NEET is a movement, a coin, a lifestyle. We're tired of the 9-5 grind, and it's time to break free. No more fake meetings, no more useless reports. It's time to be NEET.</p>
-  </div>
-
-  <div id="resignForm">
-    <h3>PFP Resign Letter Generator</h3>
-    <input type="text" id="fullName" placeholder="Your Full Name" class="btn" /><br/>
-    <input type="text" id="position" placeholder="Your Position" class="btn" /><br/>
-    <input type="text" id="company" placeholder="Company Name" class="btn" /><br/>
-    <input type="text" id="boss" placeholder="Boss's Name" class="btn" /><br/>
-    <button class="btn" onclick="generateResignLetter()">Generate</button>
-  </div>
-
-  <div id="resignPreview" style="display:none;"></div>
+<section class="hero">
+  <h1>Welcome to $NEET</h1>
+  <p>Not in Employment, Education, or Training — and proud.</p>
+  <button onclick="openForm()">📝 Generate Resignation Letter</button>
+  <p id="visitor-count">Visitors: ...</p>
 </section>
 
-<footer>&copy; 2025 $NEET. All rights reserved.</footer>
+<section class="about">
+  <h3>🤖 $neet is UBI</h3>
+  <p>Automation and AI are taking jobs. The future is post-work. NEETs are simply early adopters of the inevitable shift toward universal basic income (UBI) and a world where survival doesn't depend on meaningless jobs.</p>
+  <h3>😎 $neet gives you your life back</h3>
+  <p>Chronic stress from jobs is linked to higher rates of heart disease, diabetes, and autoimmune disorders. NEETs are more likely to live at a natural, less cortisol-flooded pace, which has serious long-term health benefits.</p>
+  <h3>🪁 $neet is freedom</h3>
+  <p>Over 40% of American workers live paycheck to paycheck (LendingClub 2023 report). Being employed doesn't even guarantee stability. In fact, some NEETs avoid the debt traps and living-cost traps that enslave workers.</p>
+</section>
+
+<div class="form-popup" id="pfpForm">
+  <h3>📝 Generate Resignation Letter</h3>
+  <input type="text" id="name" placeholder="Your Name" />
+  <input type="text" id="position" placeholder="Your Job Title" />
+  <input type="text" id="company" placeholder="Company Name" />
+  <input type="text" id="boss" placeholder="Your Boss Name" />
+  <button onclick="generateLetter()">Generate</button>
+  <button onclick="closeForm()">Close</button>
+  <div id="letterPreview" style="text-align:left; padding-top:10px;"></div>
+</div>
+
+<div class="footer">
+  © 2025 $NEET. Built by NEETs, for NEETs.
+</div>
 
 <script>
-  function updateVisitors() {
-    const count = Math.floor(Math.random() * 1000) + 1;
-    document.getElementById('visitorCount').innerText = `Visitors: ${count}`;
+  function openForm() {
+    document.getElementById("pfpForm").style.display = "block";
   }
-  setInterval(updateVisitors, 5000);
-  updateVisitors();
-
+  function closeForm() {
+    document.getElementById("pfpForm").style.display = "none";
+  }
   function copyCA() {
-    navigator.clipboard.writeText('0x00000000000000000');
-    alert('Copied: 0x00000000000000000');
+    navigator.clipboard.writeText("0x00000000000000000").then(() => {
+      const alert = document.getElementById("copy-alert");
+      alert.style.display = "block";
+      setTimeout(() => (alert.style.display = "none"), 1500);
+    });
+  }
+  function generateLetter() {
+    const name = document.getElementById("name").value;
+    const position = document.getElementById("position").value;
+    const company = document.getElementById("company").value;
+    const boss = document.getElementById("boss").value;
+
+    const letter = `
+      Dear ${boss || "Sir/Madam"},<br><br>
+      I hereby resign from my position as ${position || "a burned-out employee"} at ${company || "your soul-crushing company"}.<br><br>
+      It's not me, it's capitalism. Automation, AI, and NEET culture have opened my eyes.<br><br>
+      Best regards,<br>
+      ${name || "a proud NEET"}
+    `;
+
+    document.getElementById("letterPreview").innerHTML = letter;
   }
 
-  function generateResignLetter() {
-    const name = document.getElementById('fullName').value;
-    const pos = document.getElementById('position').value;
-    const company = document.getElementById('company').value;
-    const boss = document.getElementById('boss').value;
-
-    const letter = `Dear ${boss},\n\nI hereby resign from my position as ${pos} at ${company}.\n\nI have chosen a different path — one filled with memes, freedom, and $NEET.\n\nRegards,\n${name}`;
-
-    const preview = document.getElementById('resignPreview');
-    preview.style.display = 'block';
-    preview.innerText = letter;
+  // Visitor count mock
+  function updateVisitor() {
+    const n = Math.floor(Math.random() * 9000 + 1000);
+    document.getElementById("visitor-count").textContent = `Visitors: ${n}`;
   }
-
-  function loadQuitGenerator() {
-    document.getElementById('resignForm').scrollIntoView({ behavior: 'smooth' });
-  }
+  setInterval(updateVisitor, 5000);
+  updateVisitor();
 </script>
 
   </body>
